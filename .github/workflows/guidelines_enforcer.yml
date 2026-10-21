@@ -3,6 +3,12 @@ name: Ensure compliance with Ledger guidelines
 # Mandatory for Ledger apps: calls Ledger's reusable guidelines enforcer.
 # (Adapted from the Ledger Rust boilerplate. Not yet executed: needs the repository on GitHub.)
 
+permissions:
+  contents: read
+  actions: write
+  pull-requests: write
+  packages: read
+
 on:
   workflow_dispatch:
   push:
