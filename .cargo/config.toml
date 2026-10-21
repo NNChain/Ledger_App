@@ -1,0 +1,17 @@
+[target.apex_p]
+runner = "speculos -m apex_p"
+
+[build]
+target = "apex_p"
+
+[profile.release]
+opt-level = 'z'
+lto = true
+
+[unstable]
+build-std = ["core", "alloc"]
+build-std-features = ["compiler-builtins-mem"]
+
+# Heap holds the sign doc buffer plus the strings built for the review screens.
+[env]
+HEAP_SIZE = "28672"

@@ -1,0 +1,21 @@
+[package]
+name = "app-nnchain"
+version = "0.1.0"
+authors = ["NNChain"]
+edition = "2021"
+
+[dependencies]
+# Exact version: the audited SDK release (see Cargo.lock for the full dependency tree).
+ledger_device_sdk = { version = "=1.37.1", features = ["io_new"] }
+
+[features]
+default = ["ledger_device_sdk/nano_nbgl"]
+debug = ["ledger_device_sdk/debug"]
+
+[package.metadata.ledger]
+curve = ["secp256k1"]
+flags = "0"
+path = ["44'/118'"]
+name = "NNChain"
+stax = { icon = "icons/nnc_32x32.gif" }
+flex = { icon = "icons/nnc_40x40.gif" }

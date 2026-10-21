@@ -1,0 +1,7 @@
+[app]
+build_directory = "./"
+sdk = "Rust"
+devices = ["stax", "flex"]
+
+[pytest.standalone]
+directory = "./tests/standalone/"

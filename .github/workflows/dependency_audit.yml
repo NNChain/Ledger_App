@@ -1,0 +1,26 @@
+name: Dependency audit (cargo-audit)
+
+# Ledger requires dependencies of Rust apps to be checked with cargo-audit.
+# (Not yet executed: needs the repository on GitHub.)
+
+permissions:
+  contents: read
+  issues: write
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'Cargo.lock'
+      - 'Cargo.toml'
+  schedule:
+    - cron: '0 6 * * 1'
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: rustsec/audit-check@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

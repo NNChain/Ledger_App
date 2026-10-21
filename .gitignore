@@ -1,0 +1,9 @@
+target/
+host-tests/target/
+__pycache__/
+.pytest_cache/
+snapshots-tmp/
+host-tests/fuzz/target/
+host-tests/fuzz/corpus/
+host-tests/fuzz/artifacts/
+host-tests/Cargo.lock.bak

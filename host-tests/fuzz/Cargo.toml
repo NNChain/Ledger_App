@@ -1,0 +1,35 @@
+[package]
+name = "nnchain-host-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2021"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+
+[workspace]
+members = ["."]
+
+[[bin]]
+name = "json_sign_doc"
+path = "fuzz_targets/json_sign_doc.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "der_low_s"
+path = "fuzz_targets/der_low_s.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "bech32_encode"
+path = "fuzz_targets/bech32_encode.rs"
+test = false
+doc = false
+bench = false
