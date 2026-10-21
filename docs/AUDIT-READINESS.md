@@ -1,7 +1,7 @@
 # NNChain Ledger app: audit readiness package
 
 Version 0.1.0 · Devices: Ledger **Stax** and **Flex** (NBGL) · Language: Rust (`no_std`) ·
-SDK: `ledger_device_sdk` **=1.37.1**, API level 27 · Toolchain: `nightly-2025-12-05` (pinned in `rust-toolchain.toml`)
+SDK: `ledger_device_sdk` **1.42.0**, API level 27 · Toolchain: `nightly-2025-12-05` (pinned in `rust-toolchain.toml`)
 
 This document is the entry point for the independent security audit. It describes what the app is, what
 it must guarantee, what was reviewed and tested internally, what was found and fixed, and what is
@@ -87,7 +87,7 @@ uses Ledger's scale ("before fix" = first internal build).
 | R4 | WARNING | **Stale session state**: buffer and path stayed after LAST, and a session could continue across other commands | review | state wiped after every LAST; any other command ends the session |
 | R5 | WARNING | **Integer overflow** in the message-index label (`n + 1` for a key like `18446744073709551615`) | Rust arithmetic review | `saturating_add`; regression test |
 | R6 | WARNING | **Input strictness**: lax JSON numbers (`1-+2.`), DER reader accepting negative / non-minimal integers and trailing bytes, coin merging joining non-coin leaves | differential fuzzing | strict RFC 8259 numbers, strict DER, merge only string/number leaves |
-| R7 | INFO | cosmjs asks the public key with HRP `cosmos`; unused import and one clippy lint; SDK dependency not pinned | cosmjs e2e, clippy | `nnc` always produced; warnings fixed; SDK pinned `=1.37.1` |
+| R7 | INFO | cosmjs asks the public key with HRP `cosmos`; unused import and one clippy lint; SDK dependency not pinned | cosmjs e2e, clippy | `nnc` always produced; warnings fixed; SDK kept at the latest release (1.42.0) |
 
 During the fix for R1 the new fuzz test found that an empty object (`{}`) bypassed the structure check
 through the parser's empty-object shortcut. It was fixed before any release

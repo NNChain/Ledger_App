@@ -5,8 +5,8 @@ authors = ["NNChain"]
 edition = "2021"
 
 [dependencies]
-# Exact version: the audited SDK release (see Cargo.lock for the full dependency tree).
-ledger_device_sdk = { version = "=1.37.1", features = ["io_new"] }
+# Ledger requires apps to build with the latest SDK release; Dependabot keeps it current.
+ledger_device_sdk = { version = "1.42.0", features = ["io_new"] }
 
 [features]
 default = ["ledger_device_sdk/nano_nbgl"]

@@ -71,7 +71,7 @@ Severity uses Ledger's scale. "Before fix" describes the state of the first inte
 | R4 | WARNING | Stale session state; a session could continue across other commands | CWE-362 | fixed |
 | R5 | WARNING | Integer overflow in message-index label | CWE-190 | fixed |
 | R6 | WARNING | Lax JSON number grammar; DER reader accepted negative/non-minimal integers and trailing bytes; coin merging joined non-coin leaves | CWE-20 | fixed (found by differential fuzzing) |
-| R7 | INFO | cosmjs asks the public key with HRP `cosmos`; unused import and a clippy lint; SDK dependency not pinned | n/a | fixed |
+| R7 | INFO | cosmjs asks the public key with HRP `cosmos`; unused import and a clippy lint; SDK dependency not tracked | n/a | fixed (SDK kept at the latest release, Dependabot enabled) |
 
 Note on R1: while implementing the fix, the new fuzz test found that an empty object (`{}`) bypassed the
 structure check through the parser's empty-object shortcut. It was fixed before any release and is covered

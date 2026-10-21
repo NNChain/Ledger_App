@@ -3,6 +3,7 @@ updates:
   - package-ecosystem: "cargo"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
     allow:
       - dependency-name: "ledger_device_sdk"
+      - dependency-name: "include_gif"
