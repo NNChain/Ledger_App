@@ -5,10 +5,7 @@ use ledger_device_sdk::io::{Command, CommandResponse};
 
 /// GET_ADDR_SECP256K1: data = [hrp_len, hrp, path(5 x u32 LE)].
 /// Replies with the 33 byte compressed public key followed by the `nnc` bech32 address.
-pub fn handler_get_addr(
-    command: Command<'_>,
-    display: bool,
-) -> Result<CommandResponse<'_>, AppSW> {
+pub fn handler_get_addr(command: Command<'_>, display: bool) -> Result<CommandResponse<'_>, AppSW> {
     let data = command.get_data();
     if data.is_empty() {
         return Err(AppSW::WrongLength);

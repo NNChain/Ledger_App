@@ -92,9 +92,7 @@ impl TryFrom<ApduHeader> for Instruction {
     fn try_from(h: ApduHeader) -> Result<Self, Self::Error> {
         match (h.ins, h.p1, h.p2) {
             (INS_GET_VERSION, 0, 0) => Ok(Instruction::GetVersion),
-            (INS_GET_ADDR_SECP256K1, 0 | 1, 0) => Ok(Instruction::GetAddr {
-                display: h.p1 == 1,
-            }),
+            (INS_GET_ADDR_SECP256K1, 0 | 1, 0) => Ok(Instruction::GetAddr { display: h.p1 == 1 }),
             (INS_SIGN_SECP256K1, P1_SIGN_INIT | P1_SIGN_ADD | P1_SIGN_LAST, P2_JSON) => {
                 Ok(Instruction::Sign { stage: h.p1 })
             }

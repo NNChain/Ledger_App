@@ -42,7 +42,11 @@ pub fn compressed_pubkey(path: &Path) -> Result<[u8; 33], AppSW> {
     let pk = key.public_key().map_err(|_| AppSW::KeyDeriveFail)?;
     let uncompressed = pk.pubkey;
     let mut out = [0u8; 33];
-    out[0] = if uncompressed[64] & 1 == 0 { 0x02 } else { 0x03 };
+    out[0] = if uncompressed[64] & 1 == 0 {
+        0x02
+    } else {
+        0x03
+    };
     out[1..].copy_from_slice(&uncompressed[1..33]);
     Ok(out)
 }

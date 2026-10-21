@@ -51,12 +51,19 @@ struct Parser<'a> {
 /// Checks the keys of one object against the required shape; `required` lists the
 /// mandatory (key, kind) pairs and `optional` the allowed extra keys. No other key and
 /// no duplicate is accepted.
-fn shape_matches(keys: &[(String, Kind)], required: &[(&str, Kind)], optional: &[(&str, Kind)]) -> bool {
+fn shape_matches(
+    keys: &[(String, Kind)],
+    required: &[(&str, Kind)],
+    optional: &[(&str, Kind)],
+) -> bool {
     for (i, (k, kind)) in keys.iter().enumerate() {
         if keys[..i].iter().any(|(p, _)| p == k) {
             return false;
         }
-        let allowed = required.iter().chain(optional.iter()).find(|(name, _)| name == k);
+        let allowed = required
+            .iter()
+            .chain(optional.iter())
+            .find(|(name, _)| name == k);
         match allowed {
             Some((_, want)) => {
                 if kind != want {
@@ -66,7 +73,9 @@ fn shape_matches(keys: &[(String, Kind)], required: &[(&str, Kind)], optional: &
             None => return false,
         }
     }
-    required.iter().all(|(name, _)| keys.iter().any(|(k, _)| k == name))
+    required
+        .iter()
+        .all(|(name, _)| keys.iter().any(|(k, _)| k == name))
 }
 
 fn capitalize(s: String) -> String {
@@ -365,8 +374,8 @@ impl<'a> Parser<'a> {
                 self.i += 1;
                 self.ws();
                 // Objects whose shape is checked: the top level and every entry of `msgs`.
-                let track = self.strict
-                    && (path.is_empty() || (path.len() == 2 && path[0] == "msgs"));
+                let track =
+                    self.strict && (path.is_empty() || (path.len() == 2 && path[0] == "msgs"));
                 if self.peek() == Some(b'}') {
                     self.i += 1;
                     if track {
