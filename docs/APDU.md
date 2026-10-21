@@ -3,7 +3,7 @@
 The app implements the **same wire protocol as the Ledger Cosmos app (Zondax)** so existing Cosmos
 clients (cosmjs `LedgerSigner`, `ledger-cosmos-js`) work unchanged. It differs in what it *accepts*
 (see "Restrictions"). Supported devices: Ledger Stax and Flex (NBGL touch UI), SDK `ledger_device_sdk`
-1.37.x, API level 27.
+1.42.x, API level 27.
 
 All commands use `CLA = 0x55`. Any other CLA is answered by the SDK with `0x6E00`.
 Multi-byte integers in the key path are **little endian**.
